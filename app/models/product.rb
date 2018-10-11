@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :pictures
   has_many :reviews
 
-
+  belongs_to :user
   scope :not_exp, -> { where('expire > :date', date: DateTime.now) }
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
