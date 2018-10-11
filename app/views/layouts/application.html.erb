@@ -11,8 +11,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <ul>
-    <li><a class="active" href="/" style="text-decoration:none;">Home</a></li>
-    <li><%= link_to "Store", stores_path  %></li>
+    <li><a class="active" href="/" style="text-decoration:none; font-size: 20px;">Home</a></li>
+    <li><%= link_to "Store", stores_path, style: "text-decoration: none; font-size: 20px"  %></li>
     <% if !user_signed_in? %>
     <%= link_to "Admin ?", admin_root_path, class: "button1", style: "float:right; margin-top: 13px; margin-right: 50px" %><br />
     <% end %>
@@ -29,6 +29,7 @@
     <div id="tengah" style="margin-top: 50px;">
     <% end %>
     <%= yield %>
+    <center><h6>&copy; Tokopeloe</h6></center>
   </div>
   </div>
   <script src="jquery.raty.js"></script>
