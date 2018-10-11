@@ -1,0 +1,68 @@
+<link href="lightbox2-master-2/src/css/lightbox.css" rel="stylesheet">
+
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <center>
+    <strong><h1> Welcome to TokoPeloe </h1></strong>
+    <h2> Please <mark>Sign In</mark> to buy product </h2>
+    <p><%= link_to "Sign In", new_user_session_path, class: "btn btn-primary btn-lg" %></p>
+  </div></center>
+<% end %>
+
+<% if user_signed_in? %>
+  <div class="jumbotron" style="margin-top: 30px;">
+    <center><strong><h1> Welcome " <%= current_user.email %> " </h1></strong>
+    <p><%= link_to "sign Out", destroy_user_session_path, method: :delete, class: "btn btn-primary btn-lg"  %></p></center>
+  </div>
+<% end %>
+<center>
+    <%= form_tag products_path, :method => 'get' do %>
+      <%= text_field_tag :search, params[:search] %></br></br>
+      <%= submit_tag "search", :name => nil %></br></br>
+    <% end %>
+</center>
+    <div class="row">
+      <% @products.each do |product| %>
+
+      <div class="col" >
+        <div class="product1">
+          <center>
+
+          <%= link_to image_tag(product.image.url(:thumb)), image_path(product.image.url(:medium)), data: {lightbox: 'example-set', title: "Product P"}  %>
+
+          <p><strong><%= product.name %></strong></p>
+          <% if !user_signed_in?  %>
+          <p><strong><%= product.description %></strong></p>
+          <% end %>
+          <p>Store ID : <%= product.store_id %></p>
+          <div class="price_line">
+          <span class="price"><%= number_to_currency(product.price) %></span></div><br><br>
+          <% if user_signed_in?  %>
+          <p><%= link_to 'Show', product, style: "background-color: pink; width: 20%; border-radius: 2px; padding: 5px;" %></p>
+          <%= button_to 'Add to Cart', line_items_path(product_id: product), style: "background-color: gray; width: 70%; border-radius: 2px; padding: 15px; margin-top: 10px;" %>
+          <% end %>
+        </center>
+        </div>
+      </div>
+
+        <% end %>
+    </div>
+<br>
+<br>
+
+<div style="margin-right: 50px;">
+    <%= will_paginate @products %>
+</div>
+
+
+    <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+    <%= link_to "My Account", profil_index_path %>
+    <%= link_to "Feed Back ?", new_conversation_path %>
+
+<br>
+<br>
+
+
+
+
+<script src="lightbox2-master-2/dist/js/lightbox.js"></script>

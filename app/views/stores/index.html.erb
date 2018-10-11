@@ -1,0 +1,67 @@
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyALSl0rS4GJYRS04EJAs04uauV3O9CND1Y"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
+
+<p id="notice"><%= notice %></p>
+
+<% if user_signed_in? %>
+<blockquote class="blockquote">
+    <center><p><%= link_to 'New Store', new_store_path %></p></center>
+</blockquote>
+<% end %>
+
+<% if !user_signed_in? %>
+<blockquote class="blockquote">
+  <center><p class="mb-0">Please sign in to create Stores and product</p></center>
+</blockquote>
+<% end %>
+
+<div class="row">
+  <% @stores.each do |store| %>
+    <div class="col">
+    <div class="store1">
+      <p><%= image_tag store.logo.url(:thumb) %></p>
+      <p>Nama : <%= store.nama %></p>
+      <p>Description : <%= store.description %></p>
+      <p>User : <%= store.user.email %></p>
+      <p>Store : <%= store.id %></p>
+      <p>Address : <%= store.address %></p>
+      <% if store.user == current_user %>
+      <p><%= link_to 'New Product', new_product_path %></p>
+      <p><%= link_to 'Edit', edit_store_path(store) %>
+      <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
+    </div>
+  </div>
+    <% end %>
+</div>
+
+
+
+<br>
+
+
+<div style='width: 800px;'>
+  <center><div id="map" style='width: 400px; height: 200px;'></center></div>
+</div>
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "http://people.mozilla.com/~faaborg/files/shiretoko/firefoxIcon/firefox-32.png",
+        "width":  32,
+        "height": 32
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
+
+

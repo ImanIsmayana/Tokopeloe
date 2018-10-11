@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nama:</strong>
+  <%= @store.nama %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @store.description %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= image_tag @store.logo.url(:medium) %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @store.address %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @store.user.email %>
+</p>
+
+<%= link_to 'Edit', edit_store_path(@store) %> |
+<%= link_to 'Back', stores_path %>

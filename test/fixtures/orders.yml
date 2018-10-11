@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  product: one
+  total_price: 9.99
+  payment_time: 2018-09-13
+
+two:
+  user: two
+  product: two
+  total_price: 9.99
+  payment_time: 2018-09-13

@@ -1,0 +1,86 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div id="price-container">
+          <span class="price"><%= number_to_currency(@product.price) %></span>
+        </div>
+        <%= image_tag @product.image.url(:medium) %>
+        <div class="star-rating" data-score= <%= @avg_review %> ></div>
+                  <em><%= "#{@reviews.length} reviews" %></em><br><br><br>
+        <% if user_signed_in? %>
+        <%= link_to "Review Product", new_product_review_path(@product), class: "btn btn-danger" %>
+        <% end %>
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <ul class="nav nav-tabs">
+        <li class="active"><a  href="#1" data-toggle="tab">info</a></li>
+        <li><a href="#2" data-toggle="tab">review</a></li>
+      </ul>
+
+      <div class="tab-content ">
+        <div class="tab-pane active" id="1">
+          <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong><%= @product.name %></strong></td>
+              </tr>
+              <tr>
+                <td><strong><%= @product.description %></strong></td>
+              </tr>
+              <tr>
+                <td> <strong><%= @product.price %></strong></td>
+              </tr>
+              <tr>
+                <td><strong><%= @product.expire %></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Store:</strong></td>
+                <td><%= @product.store.nama %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+        <div class="tab-pane" id="2">
+           <h1 class="review_title"><%= @product.name %></h1>
+        <p><%= @product.description %></p>
+
+        <% if @reviews.blank? %>
+        <h3>No reviews.. please add first</h3>
+        <% else %>
+        <% @reviews.each do |review| %>
+          <div class="reviews">
+            <div class="star-rating" data-score=<%= review.rating %>></div>
+            <p><%= review.comment %></p>
+          </div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Back', root_path %>
+
+
+<script>
+    $('.star-rating').raty({
+        readOnly: true,
+        path: '/assets/',
+        score: function() {
+            return $(this).attr('data-score')
+        }
+    });
+</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
