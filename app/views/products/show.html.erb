@@ -8,14 +8,17 @@
         <%= image_tag @product.image.url(:medium) %>
         <div class="star-rating" data-score= <%= @avg_review %> ></div>
                   <em><%= "#{@reviews.length} reviews" %></em><br><br><br>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user[:id] != @product[:user_id] %>
         <%= link_to "Review Product", new_product_review_path(@product), class: "btn btn-danger" %>
         <% end %>
       </div>
+    </br>
       <div class="col-md-7 col-md-offset-1">
+        </br></br></br>
         <ul class="nav nav-tabs">
-        <li class="active"><a  href="#1" data-toggle="tab">info</a></li>
-        <li><a href="#2" data-toggle="tab">review</a></li>
+        <li class="active"><a  href="#1" data-toggle="tab" style="text-decoration: none; color: black; font-weight: bold;"><h6>Info</h6></a></li>
+        <li><a href="#3" data-toggle="tab" style="text-decoration: none; color: black; font-weight: bold;"><h6>Description</h6></a></li>
+        <li><a href="#2" data-toggle="tab" style="text-decoration: none; color: black; font-weight: bold;"><h6>Review</h6></a></li>
       </ul>
 
       <div class="tab-content ">
@@ -27,28 +30,21 @@
                 <td><strong><%= @product.name %></strong></td>
               </tr>
               <tr>
-                <td><strong><%= @product.description %></strong></td>
-              </tr>
-              <tr>
                 <td> <strong><%= @product.price %></strong></td>
               </tr>
               <tr>
                 <td><strong><%= @product.expire %></strong></td>
               </tr>
               <tr>
-                <td><strong>Store:</strong></td>
-                <td><%= @product.store.nama %></td>
+                <td><%= image_tag(@product.store.logo.url(:thumb)) %></td>
               </tr>
             </tbody>
           </table>
         </div>
         </div>
         <div class="tab-pane" id="2">
-           <h1 class="review_title"><%= @product.name %></h1>
-        <p><%= @product.description %></p>
-
         <% if @reviews.blank? %>
-        <h3>No reviews.. please add first</h3>
+        <center><h2>No reviews.. please add first</h2></center>
         <% else %>
         <% @reviews.each do |review| %>
           <div class="reviews">
@@ -57,6 +53,10 @@
           </div>
           <% end %>
         <% end %>
+        </div>
+        <div class="tab-pane" id="3">
+          <center><h3><%= image_tag(@product.image.url(:thumb)) %></h3>
+           <h3><%= @product.description %></h3></center></br></br>
         </div>
       </div>
 

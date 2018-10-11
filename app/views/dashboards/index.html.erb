@@ -11,6 +11,7 @@
 
 <% if user_signed_in? %>
   <div class="jumbotron" style="margin-top: 30px;">
+    <center><img src="assets/tokopeloe1.png" style="width: 300px; height: 200px; margin-top: -100px; margin-bottom: -50px;"></center>
     <center><strong><h1> Welcome " <%= current_user.email %> " </h1></strong>
     <p><%= link_to "sign Out", destroy_user_session_path, method: :delete, class: "btn btn-primary btn-lg"  %></p></center>
   </div>
@@ -28,7 +29,7 @@
         <div class="product1">
           <center>
 
-          <%= link_to image_tag(product.image.url(:thumb)), image_path(product.image.url(:medium)), data: {lightbox: 'example-set', title: "Product P"}  %>
+          <%= link_to image_tag(product.image.url(:thumb)), image_path(product.image.url(:medium)), data: {lightbox: 'example-set', title: "Tokopeloe"}  %>
 
           <p><strong><%= product.name %></strong></p>
           <% if !user_signed_in?  %>
@@ -37,8 +38,8 @@
           <p>Store ID : <%= product.store_id %></p>
           <div class="price_line">
           <span class="price"><%= number_to_currency(product.price) %></span></div><br><br>
-          <% if user_signed_in? && current_user[:id] != product[:user_id]  %>
           <p><%= link_to 'Show', product, style: "background-color: pink; width: 20%; border-radius: 2px; padding: 5px;" %></p>
+          <% if user_signed_in? && current_user[:id] != product[:user_id]  %>
           <%= button_to 'Add to Cart', line_items_path(product_id: product), style: "background-color: gray; width: 70%; border-radius: 2px; padding: 15px; margin-top: 10px;" %>
           <% end %>
         </center>
