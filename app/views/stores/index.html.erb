@@ -28,6 +28,7 @@
       <p>Address : <%= store.address %></p>
       <% if store.user == current_user %>
       <p><%= link_to 'New Product', new_product_path %></p>
+      <p><%= link_to 'My Product', products_path %></p>
       <p><%= link_to 'Edit', edit_store_path(store) %>
       <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></p>
       <% end %>
