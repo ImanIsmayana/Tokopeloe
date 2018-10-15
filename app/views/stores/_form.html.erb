@@ -30,10 +30,9 @@
     <%= form.text_field :address %>
   </div>
 
-  <h6> ID Suggestion <%= current_user[:id] %> </h6>
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, readonly: true, value: current_user[:id] %>
   </div>
 
   <div class="actions">

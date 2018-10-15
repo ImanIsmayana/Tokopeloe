@@ -1,4 +1,5 @@
 class ProductsController < InheritedResources::Base
+  before_action :authenticate_user!
 
 	def index
 		@products = Product.recent.order("created_at desc").page(params[:page]).where(["name LIKE?", "%#{params[:search]}%"])

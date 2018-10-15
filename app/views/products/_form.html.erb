@@ -36,16 +36,14 @@
     <%= form.datetime_select :expire %>
   </div>
 
-<p>ID Suggestion <%= current_user.id %></p>
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, readonly: true, value: current_user[:id] %>
   </div>
 
-<p>ID Suggestion <%= current_user.store_ids %></p>
   <div class="field">
     <%= form.label :store_id %>
-    <%= form.text_field :store_id %>
+    <%= form.text_field :store_id, readonly: true, value: current_user.store_ids %>
   </div>
 
   <div class="actions">

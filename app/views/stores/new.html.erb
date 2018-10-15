@@ -1,4 +1,4 @@
-<h1>New Store</h1> <h4>( Your Username <%= current_user[:email] %> )</h4>
+<h1>New Store for <%= current_user[:email] %></h1>
 
 <%= render 'form', store: @store %>
 
