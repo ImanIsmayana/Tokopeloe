@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <!-- Where all the magic happens -->
@@ -51,16 +52,11 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1908394952582262',
-      cookie     : true,
+      appId      : '711532342514255',
       xfbml      : true,
       version    : 'v3.1'
     });
-
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
-
+    FB.AppEvents.logPageView();
   };
 
   (function(d, s, id){
@@ -70,28 +66,16 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-
-   function statusChangeCallback(response){
-    if(response.status === 'connected'){
-      console.log(' Logged in an authenticated')
-    } else {
-      console.log('Not authenticated')
-    }
-
-  }
-
-
-    function checkLoginState() {
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-      });
-    }
-
 </script>
+
+
 
 <center>
 <fb:login-button
   scope="public_profile,email"
   onlogin="checkLoginState();">
 </fb:login-button>
+
+
 </center>
+

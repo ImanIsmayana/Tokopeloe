@@ -4,11 +4,15 @@
     <title>Tokopeloe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= favicon_link_tag asset_path('favicon.png') %>
     <link href="lightbox2-master-2/src/css/lightbox.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta property="og:url"                content="http://tokopeloe.herokuapp.com" />
+    <meta property="og:type"               content="product" />
+    <meta property="og:title"              content="Shopping in tokopeloe" />
+    <meta property="og:description"        content="How much does culture influence creative thinking?" />
+    <meta property="og:image"              content="" />
   </head>
   <ul>
     <li><a class="active" href="/" style="text-decoration:none; font-size: 20px;">Home</a></li>
@@ -29,9 +33,19 @@
     <div id="tengah" style="margin-top: 50px;">
     <% end %>
     <%= yield %>
+    <center>
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Ftokopeloe.herokuapp.com&layout=button_count&size=small&mobile_iframe=true&appId=711532342514255&width=81&height=20" width="81" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
     <center><h6><mark>&copy; Tokopeloe</mark></h6></center>
   </div>
   </div>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v3.1&appId=711532342514255&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
   <script src="jquery.raty.js"></script>
   <script src="lightbox2-master-2/dist/js/lightbox.js"></script>
   </body>
