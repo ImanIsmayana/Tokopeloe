@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/create'
+  get 'sessions/destroy'
   post '/rate' => 'rater#create', :as => 'rate'
   resources :conversations do
     resources :messages
@@ -15,7 +17,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :dashboards
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'profil/index'
