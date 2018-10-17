@@ -7,6 +7,9 @@ ruby '2.4.1'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
 
+gem 'rails_12factor', group: :production
+gem 'aws-sdk', '~> 2.3'
+
 group :production do
   gem 'pg'         #gem to use in production environment
 end
